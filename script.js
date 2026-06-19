@@ -11,6 +11,9 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b === 0) {
+        return 'Error: Division by zero';
+    }   
     return a / b;
 }
 
@@ -33,7 +36,7 @@ function operate(num1, operator, num2) {
             return 'Invalid operator';
     }   
 }
-console.log(operate(3, '-', 5));
+// console.log(operate(3, '-', 5));
 const digits = document.querySelectorAll('[data-value]:not(.operbtn)');
 const operators = document.querySelectorAll('.operbtn:not(#equals)');
 const display = document.getElementById('display');
@@ -44,19 +47,23 @@ const equalsBtn = document.getElementById('equals');
 digits.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value');
-        if (display.textContent === '0' || justCalculated) {
+        if (display.textContent.includes('.') && value === '.') {
+            return; // Prevent adding another decimal point
+        }
+        if (display.textContent === '0' || justCalculated || display.textContent === 'Error: Division by zero') {
             display.textContent = value;
             justCalculated = false;
         } else {
             display.textContent += value;
         }
+        
     });
 });
 
 operators.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value');
-        if (operator !== '') {
+        if (operator !== '' && !justCalculated) {
             const result = operate(num1, operator, parseFloat(display.textContent));
             display.textContent = result;
             num1 = result;
@@ -69,8 +76,19 @@ operators.forEach(button => {
     });
 });
 equalsBtn.addEventListener('click', () => {
+    if (operator === '' || display.textContent === 'Error: Division by zero') {
+        return;
+    }
     const result = operate(num1, operator, parseFloat(display.textContent));
+    if (typeof result === 'string') {
     display.textContent = result;
+    return;
+}
+    if (result % 1 === 0) {
+        display.textContent = result;
+    } else {
+        display.textContent = result.toFixed(4);
+    }
     num1 = result;
     justCalculated = true;
 });
