@@ -1,41 +1,110 @@
-# Calculator
-Əsas funksiyalar:
+## Calculator
 
-add, subtract, multiply, divide — 4 əməliyyat funksiyası yaz, konsolda test et
+Fourth project from The Odin Project Foundations course. A browser-based interactive calculator that performs basic arithmetic operations and supports both mouse and keyboard input.
 
-Dəyişənlər:
+## What I Learned
 
-3 dəyişən yarat: birinci ədəd, operator, ikinci ədəd
+This project strengthened my understanding of DOM manipulation, state handling, and event-driven logic in JavaScript:
 
-operate funksiyası:
+# State Management:
+Handled calculator state using variables (num1, operator, num2, justCalculated) to control input flow and operation sequencing.
 
-Operator və 2 ədəd alır, lazımi funksiyanı çağırır
+# Core Arithmetic Logic:
+Implemented basic math functions (add, subtract, multiply, divide) and used a central operate() function to dispatch operations dynamically.
 
-HTML:
+# Sequential Calculations:
+Enabled continuous calculations by storing intermediate results in num1 and chaining operations without resetting after each result.
 
-Bütün rəqəm və operator düymələri
-Display (ekran)
-Clear düyməsi
+# Event Handling:
 
-Məntiq:
+Click events for number, operator, equals, clear, and backspace buttons
+Keyboard support via keydown mapping
+Separation of digit, operator, and control inputs
 
-Rəqəm düymələri basılanda display yenilənsin
-= basılanda operate çağrılsın, nəticə göstərilsin
+# Error Handling:
 
+Division by zero detection
+Error state display management
+Safe handling of invalid operator states
 
-Diqqət et — Buglar:
+# Display Logic:
 
-Eyni anda yalnız 2 ədəd hesabla. 12 + 7 - 1 girəndə: əvvəl 12+7=19, sonra 19-1=18
-Uzun onluq ədədləri yuvarlaqlaşdır
-= tək basılsa problem olmasın
-Clear hər şeyi sıfırlasın
-Sıfıra bölmədə kəskin xəta mesajı göstər
-Ardıcıl operator basılsa hesablama etmə
-Nəticə göstəriləndə yeni rəqəm basılsa sıfırdan başla
+Prevented multiple decimal points
+Controlled overwrite vs append behavior
+Formatted floating-point results (toFixed(4)) when needed
+Handled integer vs decimal output cleanly
 
+## How to Use
 
-Əlavə (isteğe bağlı):
+Click number buttons to input values
+Select an operator (+, −, ×, ÷)
+Press = to get the result
+Use C to reset the calculator
+Use ⌫ to delete the last digit
+Keyboard input is fully supported
 
-Onluq nöqtə . düyməsi
-Backspace düyməsi
-Klaviatura dəstəyi
+# Keyboard shortcuts:
+
+0–9 → numbers
++ - * / → operators
+Enter or = → calculate result
+Backspace → delete last character
+C → clear
+. → decimal point
+
+## Pseudocode
+
+START calculator
+Initialize state: num1 = 0, operator = '', justCalculated = false
+
+ON digit input:
+
+If display is "0" OR justCalculated OR error:
+→ replace display with input
+Else:
+→ append input to display
+
+ON operator input:
+
+If operator already exists and not justCalculated:
+→ compute previous operation
+→ store result in num1
+Else:
+→ set num1 from display
+Store new operator
+Set justCalculated = true
+
+ON equals:
+
+If operator is empty or error state:
+→ do nothing
+Else:
+→ compute result
+→ format output (integer or 4 decimals)
+→ update display
+→ set justCalculated = true
+
+ON clear:
+
+Reset all variables
+Set display to 0
+
+ON backspace:
+
+Remove last character
+If empty → set to 0
+
+## Technologies Used
+
+HTML5 (semantic structure)
+CSS3 (Flexbox layout, responsive UI, button states)
+JavaScript (ES6+)
+DOM manipulation
+Event handling
+State-based logic
+Arithmetic operations
+Git / GitHub (version control)
+
+## Live Preview
+
+https://tarlan129.github.io/Calculator/

@@ -27,8 +27,14 @@ body{
     border: 1px solid black;
     border-radius: 15px;
     margin: 10px;
-    background-color: black;
+    background-color: rgb(7, 7, 7);
     color: rgb(194, 44, 174);
+    justify-content: end;
+    align-items: center;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 10px;
+    
    
 
 

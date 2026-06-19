@@ -48,7 +48,7 @@ digits.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value');
         if (display.textContent.includes('.') && value === '.') {
-            return; // Prevent adding another decimal point
+            return;
         }
         if (display.textContent === '0' || justCalculated || display.textContent === 'Error: Division by zero') {
             display.textContent = value;
@@ -104,5 +104,29 @@ backspaceBtn.addEventListener('click', () => {
         display.textContent = display.textContent.slice(0, -1);
     } else {
         display.textContent = '0';
+    }
+});
+document.addEventListener('keydown', (e) => {
+    if (e.key >= '0' && e.key <= '9') {
+        const targetButton = Array.from(digits).find(btn => btn.getAttribute('data-value') === e.key);
+if (targetButton) {
+    targetButton.click();
+}
+    } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+        const targetButton = Array.from(operators).find(btn => btn.getAttribute('data-value') === e.key);
+if (targetButton) {
+    targetButton.click();
+}
+    } else if (e.key === 'Enter' || e.key === '=') {
+        equalsBtn.click();
+    } else if (e.key === 'Backspace') {
+        backspaceBtn.click();
+    } else if (e.key === '.') {
+        const targetButton = Array.from(digits).find(btn => btn.getAttribute('data-value') === e.key);
+        if (targetButton) {
+            targetButton.click();
+        }
+    }else if (e.key === 'c' || e.key === 'C') {
+        clearBtn.click();
     }
 });
