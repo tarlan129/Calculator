@@ -45,6 +45,7 @@ body{
     background-color: black;
     
     
+    
 
 }
 .row{
@@ -63,8 +64,17 @@ body{
     border-radius: 20px;
     font-size: 22px;
     background-color: rgb(224, 218, 218);
+    font-weight: bold;
+    cursor: pointer;
+    
 }
 .operbtn{
     background-color: rgb(194, 44, 174);
     color: aliceblue;
+}
+.btn:hover{
+    background-color: hsl(0, 3%, 70%);
+}
+.btn:active{
+    background-color: hsl(0, 0%, 50%);
 }
