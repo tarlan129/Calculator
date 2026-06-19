@@ -33,3 +33,20 @@ function operate(num1, operator, num2) {
     }   
 }
 console.log(operate(3, '-', 5));
+const digits = document.querySelectorAll('[data-value]:not(.operbtn)');
+const operators = document.querySelectorAll('.operbtn');
+const display = document.getElementById('display');
+const clearBtn = document.getElementById('clear');
+const backspaceBtn = document.getElementById('backspace');
+const equalsBtn = document.getElementById('equals');
+
+digits.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.getAttribute('data-value');
+        if (display.textContent === '0') {
+            display.textContent = value;
+        } else {
+            display.textContent += value;
+        }
+    });
+});
